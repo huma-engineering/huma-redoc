@@ -55,3 +55,4 @@ export const BackgroundStub = styled.div`
     display: none;
   `};
 `;
+

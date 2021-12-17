@@ -26,6 +26,10 @@ export interface LabelsConfig {
   required: string;
   path: string;
   file: string;
+  cancel: string;
+  Hawk: string;
+  PleaseSelect: string;
+  SelectAuthType: string;
 }
 
 export type LabelsConfigRaw = Partial<LabelsConfig>;
@@ -57,7 +61,11 @@ const labels: LabelsConfig = {
   authorization: "Authorization",
   required: "required",
   path: "path",
-  file: "file"
+  file: "file",
+  cancel: "Cancel",
+  Hawk: "Hawk",
+  PleaseSelect: "Please Select",
+  SelectAuthType: "Select an authorization type"
 };
 
 export function setRedocLabels(_labels?: LabelsConfigRaw) {

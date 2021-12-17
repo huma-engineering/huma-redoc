@@ -35,7 +35,7 @@ export const RightPanelButton = styled.button`
         }
 `;
 
-export const ButtonAuthorize = styled.button`
+export const Button = styled.button`
       padding: 20px;
       height: 40px;
       display: inline-flex;
@@ -49,7 +49,6 @@ export const ButtonAuthorize = styled.button`
       min-width: 60px;
       font-size: 1rem;
       font-weight: 400;
-      width: 100%;
       color: ${({ theme }) => theme.colors.secondary.contrastText};
       background: ${({ theme }) => theme.colors.secondary.main};
       transition: all 300ms ease;
@@ -61,11 +60,34 @@ export const ButtonAuthorize = styled.button`
 
       &[disabled] {
         pointer-events: none;
-        opacity: 0.7;
+        opacity: 0.6;
       }
 
       &.primary {
         background: ${({ theme }) => theme.typography.code.backgroundColor};
+        border-color: ${({ theme }) => theme.typography.code.backgroundColor};
+      }
+
+      &.secondary {
+        background: ${({ theme }) => theme.colors.secondary.main};
+        border-color: ${({ theme }) => theme.colors.secondary.main};
+        color: ${({ theme }) => theme.colors.light.main};
+      }
+
+      &.outline {
+        background-color: transparent;
+
+        &.secondary {
+          border-color: ${({ theme }) => theme.colors.secondary.main};
+          color: ${({ theme }) => theme.colors.secondary.main};
+        }
+
+        &:hover {
+          &.secondary {
+            background-color: ${({ theme }) => theme.colors.secondary.main};
+            color: ${({ theme }) => theme.colors.light.main};
+          }
+        }
       }
      
       &:focus, &:active {

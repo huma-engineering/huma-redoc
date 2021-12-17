@@ -13,8 +13,11 @@ import { ApiContentWrap, BackgroundStub, RedocWrap } from './styled.elements';
 
 import { SearchBox } from '../SearchBox/SearchBox';
 import { StoreProvider } from '../StoreBuilder';
-import Modal from '../Modal/Modal';
+import {ModalAuth} from '../Modals';
 import { l } from '../../services/Labels';
+import { RowAuthorize } from "../../common-elements/fields-layout";
+import { Button } from "../../common-elements/buttons";
+import { IconLock } from '../../common-elements';
 
 export interface RedocProps {
   store: AppStore;
@@ -36,10 +39,6 @@ export class Redoc extends React.Component<RedocProps> {
 
   componentWillUnmount() {
     this.props.store.dispose();
-  }
-
-  onModalShow = () => {
-    this.setState({showAuthorization:true})
   }
 
   render() {
@@ -64,14 +63,18 @@ export class Redoc extends React.Component<RedocProps> {
                   />
                 )) ||
                   null}
-                <SideMenu onModalShow={this.onModalShow} menu={menu} />
+                <RowAuthorize>
+                  <IconLock style={{ marginRight: "1rem" }} />
+                  <Button style={{width: "100%"}} onClick={() => this.setState({ showAuthorization: true })}>{l("authorize")}</Button>
+                </RowAuthorize>
+                <SideMenu menu={menu} />
               </StickyResponsiveSidebar>
               <ApiContentWrap className="api-content">
                 <ApiInfo store={store} />
                 <ContentItems items={menu.items as any} />
               </ApiContentWrap>
               <BackgroundStub />
-              <Modal onClose={()=>this.setState({showAuthorization:false})} title={l("authorization")} show={this.state.showAuthorization} />
+              <ModalAuth show={this.state.showAuthorization} onClose={()=>this.setState({ showAuthorization: false })}/>
             </RedocWrap>
           </OptionsProvider>
         </StoreProvider>

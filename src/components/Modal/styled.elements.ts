@@ -53,6 +53,6 @@ export const ModalTitle = styled.div`
 `;
 
 export const ModelContent = styled.div`
-  padding: 1rem;
+  padding: 1.6rem;
 `;
 
