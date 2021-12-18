@@ -30,6 +30,11 @@ export interface LabelsConfig {
   Hawk: string;
   PleaseSelect: string;
   SelectAuthType: string;
+  Authorizationtype: string;
+  APIkey: string;
+  APIID: string;
+  EnterAPIkey: string;
+  EnterAPIID: string;
 }
 
 export type LabelsConfigRaw = Partial<LabelsConfig>;
@@ -65,7 +70,12 @@ const labels: LabelsConfig = {
   cancel: "Cancel",
   Hawk: "Hawk",
   PleaseSelect: "Please Select",
-  SelectAuthType: "Select an authorization type"
+  SelectAuthType: "Select an authorization type",
+  Authorizationtype: "Authorization type",
+  APIkey: "API key",
+  APIID: "API ID",
+  EnterAPIkey: "Enter API key",
+  EnterAPIID: "Enter API ID"
 };
 
 export function setRedocLabels(_labels?: LabelsConfigRaw) {

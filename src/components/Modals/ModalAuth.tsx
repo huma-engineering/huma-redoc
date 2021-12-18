@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 import Modal from "../Modal/Modal";
-import { AuthorizationButtonsRow } from "./styled.elements";
+import { AuthorizationButtonsRow, AuthorizationRow, AuthorizationLabel } from "./styled.elements";
 import { l } from '../../services/Labels';
 import { Button } from "../../common-elements/buttons";
 import Select from "../Select"
+import Input from "../Input"
 
 interface componentInterface {
   show: boolean;
@@ -14,13 +15,16 @@ interface componentInterface {
 export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
 
   const { show, onClose } = props
+  const [selectedType, setSelectedType] = useState({ value: "", label: "" })
+  const [apiKey, setApiKey] = useState("")
+  const [apiId, setApiId] = useState("")
 
   const onAuthorize = () => {
 
   }
 
-  const isDisabled = ():boolean => {
-    return true
+  const isDisabled = (): boolean => {
+    return apiKey && apiId ? false : true
   }
 
   return <Modal
@@ -29,12 +33,46 @@ export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
     }}
     title={l("authorization")}
     show={show}>
-      <Select
-        onChange={(e)=>console.log(e)}
-        options={[{value:l("Hawk"), label:l("Hawk")}]}
-        placeholder={l("SelectAuthType")}
-        style={{marginBottom: "1.6rem"}}
-      />
+    <AuthorizationRow style={{ marginBottom: "1rem" }}>
+      <div>
+        <AuthorizationLabel>
+          {l("Authorizationtype")}:
+        </AuthorizationLabel>
+      </div>
+      <div>
+        <Select
+          onChange={(e) => setSelectedType(e)}
+          options={[
+            { value: l("Hawk"), label: l("Hawk") }
+          ]}
+          placeholder={l("SelectAuthType")}
+        />
+      </div>
+    </AuthorizationRow>
+    {selectedType.value === "Hawk" &&
+      <>
+        <AuthorizationRow style={{ marginBottom: "1rem" }}>
+          <div>
+            <AuthorizationLabel>
+              {l("APIkey")}:
+            </AuthorizationLabel>
+          </div>
+          <div>
+            <Input placeholder={l("EnterAPIkey")} onChange={setApiKey}/>
+          </div>
+        </AuthorizationRow>
+        <AuthorizationRow style={{ marginBottom: "1.6rem" }}>
+          <div>
+            <AuthorizationLabel>
+              {l("APIID")}:
+            </AuthorizationLabel>
+          </div>
+          <div>
+            <Input placeholder={l("EnterAPIID")} onChange={setApiId} />
+          </div>
+        </AuthorizationRow>
+      </>
+    }
     <AuthorizationButtonsRow>
       <Button
         className="outline secondary"

@@ -40,10 +40,6 @@ export const ModalOverlay = styled.div`
   background-color: rgba(0,0,0, 0.1);
 `;
 
-export const ModalClose = styled.div`
-
-`;
-
 export const ModalTitle = styled.div`
   padding: 1rem;
   text-transform: uppercase;

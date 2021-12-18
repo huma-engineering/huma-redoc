@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { FunctionComponent, useState } from 'react';
-import { SelectContainer, SelectInput, OptionContainer, SelectList } from "./styled.elements";
+import { SelectContainer, SelectInput, OptionContainer, SelectList, SelectIcon } from "./styled.elements";
 import { l } from '../../services/Labels';
+import {ShelfIcon} from "../../common-elements/shelfs"
 
 interface componentInterface {
-  onChange?: (e: object) => void;
+  onChange?: (e: {value: string, label: string}) => void;
   options?: Array<{ value: string, label: string }>;
   placeholder?: string;
   style?: object;
@@ -17,12 +18,14 @@ const Select: FunctionComponent<componentInterface> = (props) => {
   const [active, setActive] = useState(false)
 
   const onSelectChange = (item: { value: string, label: string }) => {
-    if (onChange) onChange(selected)
+    if (onChange) onChange(item)
     setSelected(item)
-    console.log(item)
   }
 
   return <SelectContainer style={{ ...style }} className={`${active ? "active" : ""}`}>
+    <SelectIcon>
+      <ShelfIcon size={'0.875rem'} direction={active ? 'up' : 'down'}/>
+    </SelectIcon>
     <SelectInput
       placeholder={placeholder ? placeholder : l("PleaseSelect")}
       onFocus={() => setActive(true)}

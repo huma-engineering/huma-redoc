@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FunctionComponent, useState, useEffect } from 'react';
-import { ModalContainer, ModalInner, ModalOverlay, ModalClose, ModalTitle, ModelContent } from "./styled.elements";
+import { ModalContainer, ModalInner, ModalOverlay, ModalTitle, ModelContent } from "./styled.elements";
 
 interface componentInterface {
   show: boolean;
@@ -25,7 +25,6 @@ const Modal: FunctionComponent<componentInterface> = (props) => {
   return <ModalContainer className={`${delayedShow ? "active" : ""}`}>
     <ModalOverlay className={`${delayedShow ? "active" : ""}`} onClick={onModalClose} />
     <ModalInner>
-      <ModalClose onClick={onModalClose} />
       <ModalTitle>{title}</ModalTitle>
       <ModelContent>{children}</ModelContent>
     </ModalInner>

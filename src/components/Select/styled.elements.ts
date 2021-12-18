@@ -1,4 +1,5 @@
 import styled from '../../styled-components';
+import { transparentize } from 'polished';
 
 export const SelectContainer = styled.div`
   position: relative;
@@ -14,6 +15,7 @@ export const SelectInput = styled.input`
   border-radius: 25px;
   border: 1px solid ${({theme}) => theme.colors.border.dark};
   padding: 0 1.4rem;
+  padding-right: 3rem;
   height: 40px;
   width: 100%;
   display: flex;
@@ -30,13 +32,15 @@ export const OptionContainer = styled.li`
   transition: color 300ms ease;
   cursor: pointer;
   background-color: ${({theme}) => theme.colors.light.main};
+  border-bottom: 1px solid ${({theme}) => theme.colors.border.dark};
 
   &:hover {
     color: ${({theme})=> theme.colors.primary.main};
+    background-color: ${({theme})=> theme.colors.gray[50]};
   }
 
   &.active {
-    background-color: ${({theme}) => `rgba(${theme.colors.text.primary, 0.1})`};
+    background-color: ${({theme})=> theme.colors.gray[50]};
   }
 `;
 
@@ -63,6 +67,18 @@ export const SelectList = styled.ul`
   }
 `;
 
+export const SelectIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1rem;
+  transition: all 300ms ease;
 
+  path {
+    fill: ${({theme}) => transparentize(0.4, theme.colors.text.primary)}
+  }
 
-
+  &.active {
+    transform: translateY(-50%) rotate(-180deg);
+  }
+`;
