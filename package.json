@@ -1,10 +1,13 @@
 {
   "name": "huma-redoc",
-  "version": "2.0.0-rc.58",
+  "version": "1.0.1",
   "description": "Huma Redoc",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Redocly/redoc"
+    "url": "git+https://github.com/huma-engineering/huma-redoc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/huma-engineering/huma-redoc/issues"
   },
   "browserslist": [
     "defaults",
@@ -14,7 +17,7 @@
     "node": ">=6.9",
     "npm": ">=3.0.0"
   },
-  "author": "Roman Hotsiy <gotsijroman@gmail.com>",
+  "author": "Zoran",
   "license": "MIT",
   "keywords": [
     "OpenAPI",
