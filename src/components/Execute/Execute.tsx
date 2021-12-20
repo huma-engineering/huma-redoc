@@ -5,10 +5,10 @@ import { l } from '../../services/Labels';
 import { getPlayloadSample } from '../../services';
 import { PayloadCode } from '../PayloadSamples/PayloadCode';
 import SwaggerClient from 'swagger-client';
-import Hawk from 'hawk';
 import { ResponseServer } from '../ResponseServer/ResponseServer';
 import { LoadingSimple } from "../Loading/LoadingSimple";
 import PathParameters from "../PathParameters/PathParameters";
+import {getAuthCredentials, isAuth} from "../../utils/auth"
 
 interface componentInterface {
   operation: any;
@@ -41,11 +41,12 @@ const Execute: FunctionComponent<componentInterface> = ({ operation, onTogle }) 
 
   const fetchRequest = (paths?, queries?, fields?) => {
 
-    const isAuth = false
+    const isNeedAuth = true
+    const authType = "Hawk"
 
     const mediaType = operation?.requestBody?.content?.mediaTypes[0]?.name
 
-    const mehtod = operation.httpVerb
+    const method = operation.httpVerb
     let url = `${server}${operation.path ? operation.path : ''}`
 
     if (queries?.length) url = `${url}${encodeParams(queries)}`
@@ -59,7 +60,7 @@ const Execute: FunctionComponent<componentInterface> = ({ operation, onTogle }) 
     let request: {[k: string]: any} = {
       url: url,
       mode: 'cors',
-      method: mehtod,
+      method: method,
       responseInterceptor: (r) => {
         setResponse(r)
         setIsFetching(false)
@@ -88,37 +89,15 @@ const Execute: FunctionComponent<componentInterface> = ({ operation, onTogle }) 
       }
     }
 
-    if (isAuth) {
+    if (isNeedAuth && isAuth()) {
 
-      const credentials = {
-        id: '617192207e1f9620307642aa.8f495502f70a375d919fcc6e',
-        key: 'b404a2581d86df2fd6fb36f2377b851e1d90de816bb1285e6d567623393ebae0',
-        algorithm: 'sha256'
-      }
-
-      let contentCredentials: {[k: string]: any} = {
-        credentials: credentials,
-        contentType: mediaType ? mediaType : 'application/json',
-      }
-
-      if (value) {
-        contentCredentials = {
-          ...contentCredentials, 
-          payload: value
-        }
-      }
-
-      const { header } = Hawk.client.header(`
-      ${server}${operation.path ? operation.path : ''}`,
-        mehtod,
-        contentCredentials
-      );
+      const authorization = getAuthCredentials(authType, `${server}${operation.path ? operation.path : ''}`, value, mediaType, method)
 
       request = {
         ...request,
         headers: {
           ...request.headers,
-          "Authorization": header
+          "Authorization": authorization
         }
       }
     }
