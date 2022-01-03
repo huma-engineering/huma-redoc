@@ -1,6 +1,6 @@
-# Generate interactive API documentation from OpenAPI definitions
+# HUMA-REDOC
 
-**This is a fork of Redoc. This version includes styling changes and implementation of the Execute section for an Huma project.
+**This is a fork of Redoc. This version includes styling changes and implementation of the Execute section for a Huma project.
 
 ## About Huma Redoc
 
@@ -51,8 +51,27 @@ npm start
 npm run bundle
 ```
 
+## Publish NPM Package
+
+### Authenticating with a personal access token
+
+To authenticate by adding your personal access token to your `~/.npmrc` file, edit the `~/.npmrc` file for your project to include the following line, replacing GITHUB_TOKEN with your personal access token. Create a new `~/.npmrc` file if one doesn't exist.
+```
+//npm.pkg.github.com/:_authToken=GITHUB_TOKEN
+```
+### Publishing a package
+
+Add to an `.npmrc` file to include a line specifying GitHub Packages URL and the account owner.
+```
+@huma-engineering:registry=https://npm.pkg.github.com
+```
+
+Publish the package:
+```
+npm publish
+```
+
 ## Customization options
-[<img alt="Customization services" src="http://i.imgur.com/c4sUF7M.png" height="60px">](https://redoc.ly/#services)
 - High-level grouping in side-menu with the [`x-tagGroups`](https://redoc.ly/docs/api-reference-docs/specification-extensions/x-tag-groups/) specification extension
 - Branding/customizations using the [`theme` option](https://redoc.ly/docs/api-reference-docs/configuration/theming/)
 
@@ -76,8 +95,6 @@ your OpenAPI definition. Linting helps you to catch errors and inconsistencies i
 OpenAPI definition before publishing.
 
 Refer to [Lint configuration](https://redoc.ly/docs/cli/guides/lint/) in the OpenAPI documentation for more information.
-
-## Deployment
 
 ### Final code example
 
@@ -118,128 +135,6 @@ to render your OpenAPI definition, refer to the
 
 See [**IE11 Support Notes**](docs/usage-with-ie11.md) for information on
 IE support for Redoc.
-
-## Redoc CLI
-For more information on Redoc's commmand-line interface, refer to
-[**Using the Redoc CLI**](https://redoc.ly/docs/redoc/quickstart/cli/).
-
-
-## Configuration
-
-### Security Definition location
-You can inject the Security Definitions widget into any place in your definition `description`.
-For more information, refer to [Security definitions injection](docs/security-definitions-injection.md).
-
-### OpenAPI specification extensions
-Redoc uses the following [specification extensions](https://swagger.io/specification/#specificationExtensions):
-* [`x-logo`](docs/redoc-vendor-extensions.md#x-logo) - is used to specify API logo
-* [`x-traitTag`](docs/redoc-vendor-extensions.md#x-traitTag) - useful for handling out common things like Pagination, Rate-Limits, etc
-* [`x-codeSamples`](docs/redoc-vendor-extensions.md#x-codeSamples) - specify operation code samples
-* [`x-examples`](docs/redoc-vendor-extensions.md#x-examples) - specify JSON example for requests
-* [`x-nullable`](docs/redoc-vendor-extensions.md#x-nullable) - mark schema param as a nullable
-* [`x-displayName`](docs/redoc-vendor-extensions.md#x-displayname) - specify human-friendly names for the menu categories
-* [`x-tagGroups`](docs/redoc-vendor-extensions.md#x-tagGroups) - group tags by categories in the side menu
-* [`x-servers`](docs/redoc-vendor-extensions.md#x-servers) - ability to specify different servers for API (backported from OpenAPI 3.0)
-* [`x-ignoredHeaderParameters`](docs/redoc-vendor-extensions.md#x-ignoredHeaderParameters) - ability to specify header parameter names to ignore
-* [`x-additionalPropertiesName`](docs/redoc-vendor-extensions.md#x-additionalPropertiesName) - ability to supply a descriptive name for the additional property keys
-* [`x-summary`](docs/redoc-vendor-extensions.md#x-summary) - For Response object, use as the response button text, with description rendered under the button
-* [`x-extendedDiscriminator`](docs/redoc-vendor-extensions.md#x-extendedDiscriminator) - In Schemas, uses this to solve name-clash issues with the standard discriminator
-* [`x-explicitMappingOnly`](docs/redoc-vendor-extensions.md#x-explicitMappingOnly) - In Schemas, display a more descriptive property name in objects with additionalProperties when viewing the property list with an object
-
-### `<redoc>` options object
-You can use all of the following options with the standalone version of the <redoc> tag by kebab-casing them. For example, `scrollYOffset` becomes `scroll-y-offset`, and `expandResponses` becomes `expand-responses`.
-
-* `disableSearch` - disable search indexing and search box.
-* `expandDefaultServerVariables` - enable expanding default server variables, default `false`.
-* `expandResponses` - specify which responses to expand by default by response codes. Values should be passed as comma-separated list without spaces e.g. `expandResponses="200,201"`. Special value `"all"` expands all responses by default. Be careful: this option can slow-down documentation rendering time.
-* `generatedPayloadSamplesMaxDepth` - set the maximum render depth for JSON payload samples (responses and request body). The default value is `10`.
-* `maxDisplayedEnumValues` - display only specified number of enum values. hide rest values under spoiler.
-* `hideDownloadButton` - do not show "Download" spec button. **THIS DOESN'T MAKE YOUR SPEC PRIVATE**, it just hides the button.
-* `hideHostname` - if set, the protocol and hostname is not shown in the operation definition.
-* `hideLoading` - do not show loading animation. Useful for small docs.
-* `hideSchemaPattern` - if set, the pattern is not shown in the schema.
-* `hideSingleRequestSampleTab` - do not show the request sample tab for requests with only one sample.
-* `expandSingleSchemaField` - automatically expand single field in a schema
-* `jsonSampleExpandLevel` - set the default expand level for JSON payload samples (responses and request body). Special value `"all"` expands all levels. The default value is `2`.
-* `hideSchemaTitles` - do not display schema `title` next to to the type
-* `simpleOneOfTypeLabel` - show only unique oneOf types in the label without titles
-* `lazyRendering` - _Not implemented yet_ ~~if set, enables lazy rendering mode in ReDoc. This mode is useful for APIs with big number of operations (e.g. > 50). In this mode ReDoc shows initial screen ASAP and then renders the rest operations asynchronously while showing progress bar on the top. Check out the [demo](\\redocly.github.io/redoc) for the example.~~
-* `menuToggle` - if true clicking second time on expanded menu item will collapse it, default `true`.
-* `nativeScrollbars` - use native scrollbar for sidemenu instead of perfect-scroll (scrolling performance optimization for big specs).
-* `noAutoAuth` - do not inject Authentication section automatically.
-* `onlyRequiredInSamples` - shows only required fields in request samples.
-* `pathInMiddlePanel` - show path link and HTTP verb in the middle panel instead of the right one.
-* `requiredPropsFirst` - show required properties first ordered in the same order as in `required` array.
-* `scrollYOffset` - If set, specifies a vertical scroll-offset. This is often useful when there are fixed positioned elements at the top of the page, such as navbars, headers etc;
-`scrollYOffset` can be specified in various ways:
-  * **number**: A fixed number of pixels to be used as offset.
-  * **selector**: selector of the element to be used for specifying the offset. The distance from the top of the page to the element's bottom will be used as offset.
-  * **function**: A getter function. Must return a number representing the offset (in pixels).
-* `showExtensions` - show vendor extensions ("x-" fields). Extensions used by ReDoc are ignored. Can be boolean or an array of `string` with names of extensions to display.
-* `sortPropsAlphabetically` - sort properties alphabetically.
-* `payloadSampleIdx` - if set, payload sample will be inserted at this index or last. Indexes start from 0.
-* `theme` - ReDoc theme. For details check [theme docs](#redoc-theme-object).
-* `untrustedSpec` - if set, the spec is considered untrusted and all HTML/markdown is sanitized to prevent XSS. **Disabled by default** for performance reasons. **Enable this option if you work with untrusted user data!**
-* `sideNavStyle` - can be specified in various ways:
-  * **summary-only**: displays a summary in the sidebar navigation item. (**default**)
-  * **path-only**: displays a path in the sidebar navigation item.
-
-### `<redoc>` theme object
-* `spacing`
-  * `unit`: 5 # main spacing unit used in autocomputed theme values later
-  * `sectionHorizontal`: 40 # Horizontal section padding. COMPUTED: spacing.unit * 8
-  * `sectionVertical`: 40 # Horizontal section padding. COMPUTED: spacing.unit * 8
-* `breakpoints` # breakpoints for switching three/two and mobile view layouts
-  * `small`: '50rem'
-  * `medium`: '85rem'
-  * `large`: '105rem'
-* `colors`
-  * `tonalOffset`: 0.3 # default tonal offset used in computations
-* `typography`
-  * `fontSize`: '14px'
-  * `lineHeight`: '1.5em'
-  * `fontWeightRegular`: '400'
-  * `fontWeightBold`: '600'
-  * `fontWeightLight`: '300'
-  * `fontFamily`: 'Roboto, sans-serif'
-  * `smoothing`: 'antialiased'
-  * `optimizeSpeed`: true
-  * `headings`
-    * `fontFamily`: 'Montserrat, sans-serif'
-    * `fontWeight`: '400'
-    * `lineHeight`: '1.6em'
-  * `code` # inline code styling
-    * `fontSize`: '13px'
-    * `fontFamily`: 'Courier, monospace'
-    * `lineHeight`: # COMPUTED: typography.lineHeight
-    * `fontWeight`: # COMPUTED: typography.fontWeightRegular
-    * `color`: '#e53935'
-    * `backgroundColor`: 'rgba(38, 50, 56, 0.05)'
-    * `wrap`: false # whether to break word for inline blocks (otherwise they can overflow)
-  * `links`
-    * `color`: # COMPUTED: colors.primary.main
-    * `visited`: # COMPUTED: typography.links.color
-    * `hover`: # COMPUTED: lighten(0.2 typography.links.color)
-* `menu`
-  * `width`: '260px'
-  * `backgroundColor`: '#fafafa'
-  * `textColor`: '#333333'
-  * `activeTextColor`: # COMPUTED: theme.menu.textColor (if set by user) or theme.colors.primary.main
-  * `groupItems` # Group headings
-    * `textTransform`: 'uppercase'
-  * `level1Items` # Level 1 items like tags or section 1st level items
-    * `textTransform`: 'none'
-  * `arrow` # menu arrow
-    * `size`: '1.5em'
-    * `color`: # COMPUTED: theme.menu.textColor
-* `logo`
-  * `maxHeight`: # COMPUTED: menu.width
-  * `maxWidth`: # COMPUTED: menu.width
-  * `gutter`: '2px' # logo image padding
-* `rightPanel`
-  * `backgroundColor`: '#263238'
-  * `width`: '40%'
-  * `textColor`: '#ffffff'
 
 -----------
 > The original [redoc repository](https://github.com/Redocly/redoc)
