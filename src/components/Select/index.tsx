@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FunctionComponent, useState, useEffect } from 'react';
+import { FunctionComponent, useState, useEffect, useRef } from 'react';
 import { SelectContainer, SelectInput, OptionContainer, SelectList, SelectIcon } from "./styled.elements";
 import { l } from '../../services/Labels';
 import { ShelfIcon } from "../../common-elements/shelfs"
@@ -17,13 +17,15 @@ const Select: FunctionComponent<componentInterface> = (props) => {
   const { onChange, options, placeholder, style, value } = props
   const [selected, setSelected] = useState({ value: "", label: "" })
   const [active, setActive] = useState(false)
+  const isCanClose = useRef(true)
 
-  useEffect(()=>{
-    if(value) setSelected(value)
-  },[value])
+  useEffect(() => {
+    if (value) setSelected(value)
+  }, [value])
 
   const onSelectChange = (item: { value: string, label: string }) => {
     if (onChange) onChange(item)
+    setActive(false)
     setSelected(item)
   }
 
@@ -34,11 +36,15 @@ const Select: FunctionComponent<componentInterface> = (props) => {
     <SelectInput
       placeholder={placeholder ? placeholder : l("PleaseSelect")}
       onFocus={() => setActive(true)}
-      onBlur={() => setTimeout(() => { setActive(false) }, 100)}
+      onBlur={() => { if (isCanClose.current) setActive(false) }}
       value={selected.label}
       onChange={() => { }}
     />
-    <SelectList className={`${active ? "active" : ""}`}>
+    <SelectList
+      onMouseEnter={() => isCanClose.current = false}
+      onMouseLeave={() => isCanClose.current = true}
+      className={`${active ? "active" : ""}`}
+    >
       {options?.map((item, i) => (
         <OptionContainer
           key={`op-${i}`}

@@ -73,6 +73,7 @@ export const SelectIcon = styled.div`
   transform: translateY(-50%);
   right: 1rem;
   transition: all 300ms ease;
+  pointer-events: none;
 
   path {
     fill: ${({theme}) => transparentize(0.4, theme.colors.text.primary)}
