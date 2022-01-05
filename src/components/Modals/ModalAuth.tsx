@@ -20,19 +20,22 @@ export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
   const [apiId, setApiId] = useState("")
 
   useEffect(() => {
-    const localAuth = localStorage.getItem("auth")
+    if (typeof window === 'object' || typeof window !== 'undefined') {
+      const localAuth = localStorage.getItem("auth")
 
-    if (localAuth) {
-      const localJsonAuth = JSON.parse(localAuth)
-      setSelectedType({ value: localJsonAuth.type, label: localJsonAuth.type })
-      if (localJsonAuth.data?.key) setApiKey(localJsonAuth.data.key)
-      if (localJsonAuth.data?.id) setApiId(localJsonAuth.data.id)
+      if (localAuth) {
+        const localJsonAuth = JSON.parse(localAuth)
+        setSelectedType({ value: localJsonAuth.type, label: localJsonAuth.type })
+        if (localJsonAuth.data?.key) setApiKey(localJsonAuth.data.key)
+        if (localJsonAuth.data?.id) setApiId(localJsonAuth.data.id)
+      }
     }
   }, [])
 
   const onAuthorize = () => {
-    if (selectedType.value == "Hawk") localStorage.setItem("auth", JSON.stringify({ type: selectedType.value, data: { key: apiKey, id: apiId } }))
-
+    if (typeof window === 'object' || typeof window !== 'undefined') {
+      if (selectedType.value == "Hawk") localStorage.setItem("auth", JSON.stringify({ type: selectedType.value, data: { key: apiKey, id: apiId } }))
+    }
     if (onClose) onClose()
   }
 
@@ -44,7 +47,9 @@ export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
     setSelectedType({ value: "", label: "" })
     setApiKey("")
     setApiId("")
-    localStorage.removeItem("auth")
+    if (typeof window === 'object' || typeof window !== 'undefined') {
+      localStorage.removeItem("auth")
+    }
     if (onClose) onClose()
   }
 

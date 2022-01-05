@@ -97,7 +97,7 @@ const Execute: FunctionComponent<componentInterface> = ({ operation, onTogle }) 
         ...request,
         headers: {
           ...request.headers,
-          "Authorization": authorization
+          ...authorization ? {"Authorization": authorization} : {}
         }
       }
     }
