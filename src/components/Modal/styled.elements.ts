@@ -43,6 +43,9 @@ export const ModalOverlay = styled.div`
 export const ModalTitle = styled.div`
   padding: 1rem;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 0.875rem;
   color: ${({ theme }) => theme.colors.text.grey};
   border-bottom: 1px solid ${({ theme }) => theme.colors.border.dark};
@@ -50,5 +53,21 @@ export const ModalTitle = styled.div`
 
 export const ModelContent = styled.div`
   padding: 1.6rem;
+`;
+
+export const ModalClose = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: opacity 300ms ease;
+
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 

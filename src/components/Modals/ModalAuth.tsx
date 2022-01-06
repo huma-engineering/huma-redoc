@@ -6,6 +6,7 @@ import { l } from '../../services/Labels';
 import { Button } from "../../common-elements/buttons";
 import Select from "../Select"
 import Input from "../Input"
+import { isAuth } from "../../utils/auth"
 
 interface componentInterface {
   show: boolean;
@@ -33,10 +34,14 @@ export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
   }, [])
 
   const onAuthorize = () => {
-    if (typeof window === 'object' || typeof window !== 'undefined') {
-      if (selectedType.value == "Hawk") localStorage.setItem("auth", JSON.stringify({ type: selectedType.value, data: { key: apiKey, id: apiId } }))
+    if (isAuth()) {
+      onUnauthorize()
+    } else {
+      if (typeof window === 'object' || typeof window !== 'undefined') {
+        if (selectedType.value == "Hawk") localStorage.setItem("auth", JSON.stringify({ type: selectedType.value, data: { key: apiKey, id: apiId } }))
+      }
+      if (onClose) onClose()
     }
-    if (onClose) onClose()
   }
 
   const isDisabled = (): boolean => {
@@ -44,13 +49,16 @@ export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
   }
 
   const onCancel = () => {
+    if (onClose) onClose()
+  }
+
+  const onUnauthorize = () => {
     setSelectedType({ value: "", label: "" })
     setApiKey("")
     setApiId("")
     if (typeof window === 'object' || typeof window !== 'undefined') {
       localStorage.removeItem("auth")
     }
-    if (onClose) onClose()
   }
 
   return <Modal
@@ -85,7 +93,7 @@ export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
             </AuthorizationLabel>
           </div>
           <div>
-            <Input value={apiKey} placeholder={l("EnterAPIkey")} onChange={setApiKey} />
+            <Input disabled={isAuth()} value={apiKey} placeholder={l("EnterAPIkey")} onChange={setApiKey} />
           </div>
         </AuthorizationRow>
         <AuthorizationRow style={{ marginBottom: "1.6rem" }}>
@@ -95,7 +103,7 @@ export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
             </AuthorizationLabel>
           </div>
           <div>
-            <Input value={apiId} placeholder={l("EnterAPIID")} onChange={setApiId} />
+            <Input disabled={isAuth()} value={apiId} placeholder={l("EnterAPIID")} onChange={setApiId} />
           </div>
         </AuthorizationRow>
       </>
@@ -104,9 +112,9 @@ export const ModalAuth: FunctionComponent<componentInterface> = (props) => {
       <Button
         className="outline secondary"
         onClick={onCancel}>
-        {l("cancel")}
+        {l("Close")}
       </Button>
-      <Button disabled={isDisabled()} onClick={onAuthorize}>{l("authorize")}</Button>
+      <Button disabled={isDisabled()} onClick={onAuthorize}>{l(isAuth() ? "Logout" : "authorize")}</Button>
     </AuthorizationButtonsRow>
   </Modal>
 }

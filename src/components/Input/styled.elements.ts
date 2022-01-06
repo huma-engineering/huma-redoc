@@ -14,6 +14,11 @@ export const InputElement = styled.input`
   font-size: 1rem;
   line-height: 40px;
 
+  &[disabled]{
+    background-color: inherit;
+    opacity: 0.5;
+  }
+
   &::placeholder{
     color:  ${({theme}) => transparentize(0.5, theme.colors.text.primary)};
   }
@@ -32,6 +37,10 @@ export const InputClear = styled.div`
   opacity: 0.6;
   cursor: pointer;
   transition: opacity 300ms ease;
+
+  &.disabled {
+    display: none;
+  }
 
   &:hover {
     opacity: 1;
