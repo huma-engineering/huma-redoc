@@ -70,7 +70,7 @@ export const StyledMarkdownBlock = styled(
     background-color: ${({ theme }) => theme.typography.code.backgroundColor};
     font-family: ${props => props.theme.typography.code.fontFamily};
     border-radius: 20px;
-    padding: ${({ theme }) => theme.spacing.unit}px ${({ theme }) => theme.spacing.unit*2}px;
+    padding: ${({ theme }) => theme.spacing.unit*1.5}px ${({ theme }) => theme.spacing.unit*3}px;
     font-size: ${props => props.theme.typography.code.fontSize};
     font-weight: ${({ theme }) => theme.typography.code.fontWeight};
     word-break: break-word;
@@ -122,6 +122,13 @@ export const StyledMarkdownBlock = styled(
     ol {
       margin-bottom: 0;
       margin-top: 0;
+    }
+  }
+  
+  ul {
+    li {
+      padding-top: 7px;
+      padding-bottom: 7px;
     }
   }
 

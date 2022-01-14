@@ -10,22 +10,27 @@ export const StyledResponseTitle = styled(ResponseTitle)`
   display: flex;
   align-items: center;
   padding: 10px;
+  padding-left: 0;
   border-radius: 2px;
   margin-bottom: 4px;
   line-height: 1.5em;
-  background-color: #f2f2f2;
+  background-color: transparent;
   cursor: pointer;
-  color: ${props => props.theme.colors.responses[props.type].color};
-  background-color: ${props => props.theme.colors.responses[props.type].backgroundColor};
+  outline: none;
+  box-shadow: ${props => props.opened ? `box-shadow: 0px 1px 0px 0px #000000` : "none"};
+
+  strong {
+    display: inline-flex;
+    border-radius: 20px;
+    color: ${props => props.theme.colors.responses[props.type].color};
+    padding: ${({ theme }) => theme.spacing.unit*1.5}px ${({ theme }) => theme.spacing.unit*3}px;
+    background-color: ${props => props.theme.colors.responses[props.type].backgroundColor};
+  }
 
   & > * {
     margin-right: 0.5rem;
   }
 
-  &:focus {
-    outline: auto;
-    outline-color: ${props => props.theme.colors.responses[props.type].color};
-  }
   ${props =>
     (props.empty &&
       `

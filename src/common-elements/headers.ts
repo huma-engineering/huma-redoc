@@ -2,7 +2,7 @@ import styled, { css, extensionsHook } from '../styled-components';
 
 const headerFontSize = {
   1: '1.85714em',
-  2: '1.57143em',
+  2: '1.875rem',
   3: '1.27em',
 };
 
@@ -22,6 +22,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   ${headerCommonMixin(2)};
+  font-family: ${({ theme }) => theme.typography.fontFamilySecondary};
   color: black;
 
   ${extensionsHook('H2')};
@@ -41,13 +42,15 @@ export const RightPanelHeader = styled.h3`
 `;
 
 export const UnderlinedHeader = styled.h5`
-  border-bottom: 1px solid rgba(38, 50, 56, 0.3);
-  margin: 1em 0 1em 0;
-  color: rgba(38, 50, 56, 0.5);
+  margin: 1.6rem 0;
   font-weight: normal;
-  text-transform: uppercase;
-  font-size: 0.929em;
+  font-size: 1rem;
   line-height: 20px;
+  font-weight: 600;
+
+  > span {
+    font-weight: 400;
+  }
 
   ${extensionsHook('UnderlinedHeader')};
 `;

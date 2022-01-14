@@ -16,7 +16,8 @@ export interface ResponseTitleProps {
 
 export class ResponseTitle extends React.PureComponent<ResponseTitleProps> {
   render() {
-    const { title, type, empty, code, opened, className, onClick } = this.props;
+    const { title, empty, code, opened, className, onClick } = this.props;
+    console.log(empty)
     return (
       <button
         className={className}
@@ -27,7 +28,6 @@ export class ResponseTitle extends React.PureComponent<ResponseTitleProps> {
         {!empty && (
           <ShelfIcon
             size={'1em'}
-            color={type}
             direction={opened ? 'down' : 'right'}
             float={'left'}
           />

@@ -37,6 +37,7 @@ export interface LabelsConfig {
   EnterAPIID: string;
   Close: string;
   Logout: string;
+  URL: string;
 }
 
 export type LabelsConfigRaw = Partial<LabelsConfig>;
@@ -79,7 +80,8 @@ const labels: LabelsConfig = {
   EnterAPIkey: "Enter API key",
   EnterAPIID: "Enter API ID",
   Close: "Close",
-  Logout: "Logout"
+  Logout: "Logout",
+  URL: "URL",
 };
 
 export function setRedocLabels(_labels?: LabelsConfigRaw) {

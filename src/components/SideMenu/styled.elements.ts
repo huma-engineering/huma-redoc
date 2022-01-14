@@ -4,68 +4,6 @@ import { darken } from 'polished';
 import { deprecatedCss, ShelfIcon } from '../../common-elements';
 import styled, { css, ResolvedThemeInterface } from '../../styled-components';
 
-export const OperationBadge = styled.span.attrs((props: { type: string }) => ({
-  className: `operation-type ${props.type}`,
-}))<{ type: string }>`
-  width: 9ex;
-  display: inline-block;
-  height: ${props => props.theme.typography.code.fontSize};
-  line-height: ${props => props.theme.typography.code.fontSize};
-  background-color: #333;
-  border-radius: 3px;
-  background-repeat: no-repeat;
-  background-position: 6px 4px;
-  font-size: 7px;
-  font-family: Verdana, sans-serif; // web-safe
-  color: white;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: bold;
-  vertical-align: middle;
-  margin-right: 6px;
-  margin-top: 2px;
-
-  &.get {
-    background-color: ${props => props.theme.colors.http.get};
-  }
-
-  &.post {
-    background-color: ${props => props.theme.colors.http.post};
-  }
-
-  &.put {
-    background-color: ${props => props.theme.colors.http.put};
-  }
-
-  &.options {
-    background-color: ${props => props.theme.colors.http.options};
-  }
-
-  &.patch {
-    background-color: ${props => props.theme.colors.http.patch};
-  }
-
-  &.delete {
-    background-color: ${props => props.theme.colors.http.delete};
-  }
-
-  &.basic {
-    background-color: ${props => props.theme.colors.http.basic};
-  }
-
-  &.link {
-    background-color: ${props => props.theme.colors.http.link};
-  }
-
-  &.head {
-    background-color: ${props => props.theme.colors.http.head};
-  }
-
-  &.hook {
-    background-color: ${props => props.theme.colors.primary.main};
-  }
-`;
-
 function menuItemActiveBg(depth, { theme }: { theme: ResolvedThemeInterface }): string {
   if (depth > 1) {
     return darken(0.1, theme.sidebar.backgroundColor);
@@ -128,14 +66,16 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
   className: classnames('-depth' + props.depth, {
     active: props.active,
   }),
-}))<MenuItemLabelType>`
+})) <MenuItemLabelType>`
   cursor: pointer;
   color: ${props =>
     props.active ? props.theme.sidebar.textColor : props.theme.sidebar.textColor};
   margin: 0;
   display: flex;
   align-items: center;
+  position: relative;
   padding: 12.5px ${props => props.theme.spacing.unit * 4}px;
+  padding-right: ${props => props.theme.spacing.unit * 2}px;
   ${({ depth, type, theme }) =>
     (type === 'section' && depth > 1 && 'padding-left: ' + theme.spacing.unit * 8 + 'px;') || ''}
   display: flex;
@@ -144,6 +84,26 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
   font-size: 1rem;
   ${props => menuItemDepth[props.depth]};
   background-color: ${props => (props.active ? menuItemActiveBg(props.depth, props) : '')};
+
+  &::after{
+    content: '';
+    position: absolute;
+    right:0;
+    top:0;
+    width: 2px;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: center right;
+    background-color: ${props => props.theme.colors.text.primary};
+    transition: transform 300ms ease;
+    display: ${props => props.type == "tag" ? "none" : "block"};
+  }
+
+  &.active {
+    &::after{
+      transform: scaleX(1);
+    }
+  }
 
   ${props => (props.deprecated && deprecatedCss) || ''};
 
@@ -161,12 +121,15 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
   }
 `;
 
-export const MenuItemTitle = styled.span<{ width?: string }>`
+export const MenuItemTitle = styled.span<{ width?: string, active?: boolean }>`
   display: inline-block;
   vertical-align: middle;
   width: ${props => (props.width ? props.width : 'auto')};
   overflow: hidden;
+  font-size: 0.9375rem;
+  font-weight: ${props => (props.active ? 600 : 400)};
   text-overflow: ellipsis;
+  transition: all 300ms ease;
 `;
 
 export const RedocAttribution = styled.div`

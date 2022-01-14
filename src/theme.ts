@@ -1,4 +1,4 @@
-import { darken, desaturate, lighten, readableColor, transparentize } from 'polished';
+import { darken, lighten, readableColor, transparentize } from 'polished';
 
 const defaultTheme: ThemeInterface = {
   spacing: {
@@ -14,7 +14,7 @@ const defaultTheme: ThemeInterface = {
   colors: {
     tonalOffset: 0.2,
     primary: {
-      main: '#32329f',
+      main: '#66CCCC',
       light: ({ colors }) => lighten(colors.tonalOffset, colors.primary.main),
       dark: ({ colors }) => darken(colors.tonalOffset, colors.primary.main),
       contrastText: ({ colors }) => readableColor(colors.primary.main),
@@ -38,7 +38,7 @@ const defaultTheme: ThemeInterface = {
       contrastText: '#ffffff',
     },
     error: {
-      main: '#d41f1c',
+      main: '#EB0037',
       light: ({ colors }) => lighten(colors.tonalOffset, colors.error.main),
       dark: ({ colors }) => darken(colors.tonalOffset, colors.error.main),
       contrastText: ({ colors }) => readableColor(colors.error.main),
@@ -50,7 +50,7 @@ const defaultTheme: ThemeInterface = {
     },
     text: {
       primary: '#424347',
-      secondary: ({ colors }) => lighten(colors.tonalOffset, colors.text.primary),
+      secondary: '#909499',
       grey: "#6A6D72",
       error: "#ff491c"
     },
@@ -84,23 +84,19 @@ const defaultTheme: ThemeInterface = {
       },
     },
     http: {
-      get: '#2F8132',
-      post: '#186FAF',
-      put: '#95507c',
-      options: '#947014',
-      patch: '#bf581d',
-      delete: '#cc3333',
-      basic: '#707070',
+      get: '#DBD5F6',
+      post: '#CBEBF0',
+      put: '#FFE6BD',
+      options: '#f5dc9d',
+      patch: '#f7c0a1',
+      delete: '#FBCCD7',
+      basic: '#d4d4d4',
       link: '#07818F',
       head: '#A23DAD',
     },
   },
   schema: {
-    linesColor: theme =>
-      lighten(
-        theme.colors.tonalOffset,
-        desaturate(theme.colors.tonalOffset, theme.colors.primary.main),
-      ),
+    linesColor: "#66CCCC",
     defaultDetailsWidth: '75%',
     typeNameColor: theme => theme.colors.text.secondary,
     typeTitleColor: theme => theme.schema.typeNameColor,
@@ -109,17 +105,18 @@ const defaultTheme: ThemeInterface = {
     nestingSpacing: '1em',
     nestedBackground: '#fafafa',
     arrow: {
-      size: '1.1em',
+      size: '0.8em',
       color: theme => theme.colors.text.secondary,
     },
   },
   typography: {
-    fontSize: '14px',
+    fontSize: '1rem',
     lineHeight: '1.5em',
     fontWeightRegular: '400',
     fontWeightBold: '600',
     fontWeightLight: '300',
     fontFamily: 'Roboto, sans-serif',
+    fontFamilySecondary: 'Roboto, sans-serif',
     smoothing: 'antialiased',
     optimizeSpeed: true,
     headings: {
@@ -128,12 +125,12 @@ const defaultTheme: ThemeInterface = {
       lineHeight: '1.6em',
     },
     code: {
-      fontSize: '12px',
-      fontFamily: 'Noto Sans, Courier, monospace',
+      fontSize: '0.875rem',
+      fontFamily: ({ typography }) => typography.fontFamily,
       lineHeight: ({ typography }) => typography.lineHeight,
       fontWeight: ({ typography }) => typography.fontWeightRegular,
       color: theme => theme.colors.text.primary,
-      backgroundColor: '#FFDA9F',
+      backgroundColor: '#DBD5F6',
       wrap: false,
     },
     links: {
@@ -167,7 +164,7 @@ const defaultTheme: ThemeInterface = {
     gutter: '2px',
   },
   rightPanel: {
-    backgroundColor: '#263238',
+    backgroundColor: '#424347',
     width: '40%',
     textColor: '#ffffff',
   },
@@ -313,6 +310,7 @@ export interface ResolvedThemeInterface {
     fontWeightRegular: string;
     fontWeightBold: string;
     fontFamily: string;
+    fontFamilySecondary: string;
 
     smoothing: string;
     optimizeSpeed: boolean;

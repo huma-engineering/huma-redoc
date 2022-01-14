@@ -9,11 +9,13 @@ export const ClickablePropertyNameCell = styled(PropertyNameCell)`
     background-color: transparent;
     border: 0;
     outline: 0;
-    font-size: 13px;
-    font-family: ${props => props.theme.typography.code.fontFamily};
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: ${props => props.theme.typography.fontFamily};
     cursor: pointer;
     padding: 0;
     color: ${props => props.theme.colors.text.primary};
+
     &:focus {
       font-weight: ${({ theme }) => theme.typography.fontWeightBold};
     }
@@ -21,6 +23,8 @@ export const ClickablePropertyNameCell = styled(PropertyNameCell)`
   ${ShelfIcon} {
     height: ${({ theme }) => theme.schema.arrow.size};
     width: ${({ theme }) => theme.schema.arrow.size};
+    margin-left: 0.5rem;
+    
     polygon {
       fill: ${({ theme }) => theme.schema.arrow.color};
     }

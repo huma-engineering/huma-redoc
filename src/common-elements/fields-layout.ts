@@ -63,10 +63,11 @@ export const PropertyCellWithInner = styled(PropertyCell)`
 
 export const PropertyNameCell = styled(PropertyCell)`
   vertical-align: top;
-  line-height: 20px;
+  line-height: 1.2;
   white-space: nowrap;
-  font-size: 13px;
-  font-family: ${props => props.theme.typography.code.fontFamily};
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: ${props => props.theme.typography.fontFamily};
 
   &.deprecated {
     ${deprecatedCss};
@@ -78,7 +79,7 @@ export const PropertyNameCell = styled(PropertyCell)`
 `;
 
 export const PropertyDetailsCell = styled.td`
-  border-bottom: 1px solid #9fb4be;
+  border-bottom: 1px solid ${props => props.theme.colors.gray[200]};
   padding: 10px 0;
   width: ${props => props.theme.schema.defaultDetailsWidth};
   box-sizing: border-box;

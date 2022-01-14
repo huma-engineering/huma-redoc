@@ -13,7 +13,7 @@ export const Tabs = styled(ReactTabs)`
     margin: 0 -5px;
 
     > li {
-      padding: 5px 10px;
+      padding: 5px 20px;
       display: inline-block;
 
       background-color: ${({ theme }) => theme.codeBlock.backgroundColor};
@@ -25,10 +25,10 @@ export const Tabs = styled(ReactTabs)`
       margin: 0
         ${({ theme }) => `${theme.spacing.unit}px ${theme.spacing.unit}px ${theme.spacing.unit}px`};
       border: 1px solid ${({ theme }) => darken(0.05, theme.codeBlock.backgroundColor)};
-      border-radius: 5px;
+      border-radius: 20px;
       min-width: 60px;
-      font-size: 0.9em;
-      font-weight: bold;
+      font-size: 0.875rem;
+      font-weight: 400;
 
       &.react-tabs__tab--selected {
         color: ${props => props.theme.colors.text.primary};

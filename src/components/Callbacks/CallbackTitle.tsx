@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { darken } from 'polished';
 import { ShelfIcon } from '../../common-elements';
-import { OperationBadge } from '../SideMenu/styled.elements';
+import { OperationBadge } from '../../common-elements';
 import { shortenHTTPVerb } from '../../utils/openapi';
 import styled from '../../styled-components';
 import { Badge } from '../../common-elements/';

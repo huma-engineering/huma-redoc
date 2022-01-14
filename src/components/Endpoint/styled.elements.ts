@@ -7,7 +7,8 @@ export const OperationEndpointWrap = styled.div`
 `;
 
 export const ServerRelativeURL = styled.span`
-  font-family: ${props => props.theme.typography.code.fontFamily};
+  font-family: ${props => props.theme.typography.fontFamily};
+  font-size: 1rem;
   margin-left: 10px;
   flex: 1;
   overflow-x: hidden;
@@ -20,38 +21,32 @@ export const EndpointInfo = styled.button<{ expanded?: boolean; inverted?: boole
   width: 100%;
   text-align: left;
   cursor: pointer;
-  padding: 10px 30px 10px ${props => (props.inverted ? '10px' : '20px')};
-  border-radius: ${props => (props.inverted ? '0' : '4px 4px 0 0')};
-  background-color: ${props =>
-    props.inverted ? 'transparent' : props.theme.codeBlock.backgroundColor};
+  padding: 7px 30px 7px 7px;
+  border-radius: 20px;
+  background-color: transparent;
   display: flex;
   white-space: nowrap;
   align-items: center;
-  border: ${props => (props.inverted ? '0' : '1px solid transparent')};
-  border-bottom: ${props => (props.inverted ? '1px solid #ccc' : '0')};
+  border: ${({theme}) => `1px solid ${theme.colors.text.secondary}`};
   transition: border-color 0.25s ease;
-
-  ${props =>
-    (props.expanded && !props.inverted && `border-color: ${props.theme.colors.border.dark};`) || ''}
 
   .${ServerRelativeURL} {
     color: ${props => (props.inverted ? props.theme.colors.text.primary : '#ffffff')};
-  }
-  &:focus {
-    box-shadow: inset 0 2px 2px rgba(0, 0, 0, 0.45), 0 2px 0 rgba(128, 128, 128, 0.25);
   }
 `;
 
 export const HttpVerb = styled.span.attrs((props: { type: string; compact?: boolean }) => ({
   className: `http-verb ${props.type}`,
 }))<{ type: string; compact?: boolean }>`
-  font-size: ${props => (props.compact ? '0.8em' : '0.929em')};
-  line-height: ${props => (props.compact ? '18px' : '20px')};
+  font-size: 0.75rem;
   background-color: ${props => props.theme.colors.http[props.type] || '#999999'};
-  color: #ffffff;
-  padding: ${props => (props.compact ? '2px 8px' : '3px 10px')};
-  text-transform: uppercase;
-  font-family: ${props => props.theme.typography.headings.fontFamily};
+  color: ${({theme}) => theme.colors.text.primary};
+  height: 24px;
+  display: flex;
+  border-radius: 20px;
+  align-items: center;
+  padding: 0 14px;
+  font-family: ${props => props.theme.typography.fontFamily};
   margin: 0;
 `;
 
@@ -59,13 +54,11 @@ export const ServersOverlay = styled.div<{ expanded: boolean }>`
   position: absolute;
   width: 100%;
   z-index: 100;
-  background: #fafafa;
+  background: ${({theme}) => theme.colors.light.main};
   color: #263238;
   box-sizing: border-box;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.33);
   overflow: hidden;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-radius: 14px;
   transition: all 0.25s ease;
   visibility: hidden;
   ${props => (props.expanded ? 'visibility: visible;' : 'transform: translateY(-50%) scaleY(0);')}
@@ -77,10 +70,11 @@ export const ServerItem = styled.div`
 
 export const ServerUrl = styled.div`
   padding: 5px;
-  border: 1px solid #ccc;
-  background: #fff;
   word-break: break-all;
+  font-size: 0.875rem;
+  font-weight: 600;
   color: ${props => props.theme.colors.primary.main};
+  
   > span {
     color: ${props => props.theme.colors.text.primary};
   }

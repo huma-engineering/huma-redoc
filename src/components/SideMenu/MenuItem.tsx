@@ -5,7 +5,8 @@ import { ShelfIcon } from '../../common-elements/shelfs';
 import { IMenuItem, OperationModel } from '../../services';
 import { shortenHTTPVerb } from '../../utils/openapi';
 import { MenuItems } from './MenuItems';
-import { MenuItemLabel, MenuItemLi, MenuItemTitle, OperationBadge } from './styled.elements';
+import { MenuItemLabel, MenuItemLi, MenuItemTitle } from './styled.elements';
+import { OperationBadge } from '../../common-elements'
 import { l } from '../../services/Labels';
 
 export interface MenuItemProps {
@@ -95,7 +96,7 @@ export class OperationMenuItemContent extends React.Component<OperationMenuItemC
         ) : (
           <OperationBadge type={item.httpVerb}>{shortenHTTPVerb(item.httpVerb)}</OperationBadge>
         )}
-        <MenuItemTitle width="calc(100% - 38px)">
+        <MenuItemTitle active={item.active} width="calc(100% - 38px)">
           {item.name}
           {this.props.children}
         </MenuItemTitle>

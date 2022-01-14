@@ -18,6 +18,10 @@ import { ResponsesList } from '../Responses/ResponsesList';
 import { ResponseSamples } from '../ResponseSamples/ResponseSamples';
 import Execute from '../Execute/Execute';
 import { SecurityRequirements } from '../SecurityRequirement/SecurityRequirement';
+import { OperationBadge } from '../../common-elements';
+import { shortenHTTPVerb } from '../../utils/openapi';
+import { OperationTitle, OperationUrl } from './styled.elements';
+import { l } from '../../services/Labels';
 
 const OperationRow = styled(Row)`
   backface-visibility: hidden;
@@ -35,44 +39,50 @@ interface componentInterface {
 
 export const Operation: FunctionComponent<componentInterface> = ({ operation }) => {
 
-  const { name: summary, description, deprecated, externalDocs, isWebhook } = operation;
+  const { name: summary, description, deprecated, externalDocs, isWebhook, httpVerb, path } = operation;
   const hasDescription = !!(description || externalDocs);
   const [isSamplesActive, setIsSamplesActive] = useState(true);
 
-    return (
-      <OptionsContext.Consumer>
-        {options => (
-          <OperationRow>
-            <MiddlePanel>
+  return (
+    <OptionsContext.Consumer>
+      {options => (
+        <OperationRow>
+          <MiddlePanel>
+            <OperationTitle>
               <H2>
                 <ShareLink to={operation.id} />
                 {summary} {deprecated && <Badge type="warning"> Deprecated </Badge>}
                 {isWebhook && <Badge type="primary"> Webhook </Badge>}
               </H2>
-              {options.pathInMiddlePanel && !isWebhook && (
-                <Endpoint operation={operation} inverted={true} />
-              )}
-              {hasDescription && (
-                <Description>
-                  {description !== undefined && <Markdown source={description} />}
-                  {externalDocs && <ExternalDocumentation externalDocs={externalDocs} />}
-                </Description>
-              )}
-              <Extensions extensions={operation.extensions} />
-              <SecurityRequirements securities={operation.security} />
-              <Parameters parameters={operation.parameters} body={operation.requestBody} />
-              <ResponsesList responses={operation.responses} />
-              <CallbacksList callbacks={operation.callbacks} />
-            </MiddlePanel>
-            <DarkRightPanel className="right-panel">
-              {!options.pathInMiddlePanel && !isWebhook && <Endpoint operation={operation} />}
-              <RequestSamples operation={operation} isActive={isSamplesActive} />
-              <Execute onTogle={setIsSamplesActive} operation={operation}/>
-              <ResponseSamples operation={operation} />
-              <CallbackSamples callbacks={operation.callbacks} />
-            </DarkRightPanel>
-          </OperationRow>
-        )}
-      </OptionsContext.Consumer>
-    );
+              <OperationBadge type={httpVerb}>{shortenHTTPVerb(httpVerb)}</OperationBadge>
+            </OperationTitle>
+            <OperationUrl>
+              <strong>{l('URL')}:</strong> {path}
+            </OperationUrl>
+            {options.pathInMiddlePanel && !isWebhook && (
+              <Endpoint operation={operation} inverted={true} />
+            )}
+            {hasDescription && (
+              <Description>
+                {description !== undefined && <Markdown source={description} />}
+                {externalDocs && <ExternalDocumentation externalDocs={externalDocs} />}
+              </Description>
+            )}
+            <Extensions extensions={operation.extensions} />
+            <SecurityRequirements securities={operation.security} />
+            <Parameters parameters={operation.parameters} body={operation.requestBody} />
+            <ResponsesList responses={operation.responses} />
+            <CallbacksList callbacks={operation.callbacks} />
+          </MiddlePanel>
+          <DarkRightPanel className="right-panel">
+            {!options.pathInMiddlePanel && !isWebhook && <Endpoint operation={operation} />}
+            <RequestSamples operation={operation} isActive={isSamplesActive} />
+            <Execute onTogle={setIsSamplesActive} operation={operation} />
+            <ResponseSamples operation={operation} />
+            <CallbackSamples callbacks={operation.callbacks} />
+          </DarkRightPanel>
+        </OperationRow>
+      )}
+    </OptionsContext.Consumer>
+  );
 }

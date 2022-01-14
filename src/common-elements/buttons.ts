@@ -2,8 +2,8 @@ import styled from '../styled-components';
 import { darken } from 'polished';
 
 export const RightPanelButton = styled.button`
-      padding: 20px;
-      height: 36px;
+      padding: 0 20px;
+      height: 40px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -12,18 +12,22 @@ export const RightPanelButton = styled.button`
       text-align: center;
       outline: none;
       border: 1px solid ${({ theme }) => darken(0.05, theme.codeBlock.backgroundColor)};
-      border-radius: 5px;
+      border-radius: 20px;
       min-width: 60px;
-      font-size: 0.9em;
-      font-weight: bold;
+      font-size: 1rem;
+      font-weight: 400;
       width: 100%;
       color: ${props => props.theme.colors.text.primary};
       background: ${({ theme }) => theme.rightPanel.textColor};
-      transition: opacity 300ms ease;
+      transition: color 300ms ease;
 
       &[disabled] {
         pointer-events: none;
         opacity: 0.7;
+      }
+
+      &:hover {
+        color: ${props => props.theme.colors.primary.main};;
       }
 
       &.primary {
