@@ -32,6 +32,10 @@ export const RightPanelButton = styled.button`
 
       &.primary {
         background: ${({ theme }) => theme.typography.code.backgroundColor};
+
+        &:hover {
+          color: ${props => props.theme.colors.success.main};;
+        }
       }
      
       &:focus, &:active {

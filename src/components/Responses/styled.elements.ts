@@ -14,14 +14,22 @@ export const StyledResponseTitle = styled(ResponseTitle)`
   border-radius: 2px;
   margin-bottom: 4px;
   line-height: 1.5em;
+  font-size: 1rem;
   background-color: transparent;
   cursor: pointer;
   outline: none;
+  color: ${({theme}) => theme.colors.text.secondary};
   box-shadow: ${props => props.opened ? `box-shadow: 0px 1px 0px 0px #000000` : "none"};
+  transition: color 300ms ease;
+
+  &:hover {
+    color: ${({theme}) => theme.colors.text.primary};
+  }
 
   strong {
     display: inline-flex;
     border-radius: 20px;
+    font-size: 0.875rem;
     color: ${props => props.theme.colors.responses[props.type].color};
     padding: ${({ theme }) => theme.spacing.unit*1.5}px ${({ theme }) => theme.spacing.unit*3}px;
     background-color: ${props => props.theme.colors.responses[props.type].backgroundColor};

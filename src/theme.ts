@@ -165,12 +165,14 @@ const defaultTheme: ThemeInterface = {
   },
   rightPanel: {
     backgroundColor: '#424347',
+    backgroundInner: '#2F3033',
     width: '40%',
     textColor: '#ffffff',
+
   },
   rightPanelInner: {
-    backgroundColor: '#11171a',
-    codeBlock: 'rgba(38,50,56,0.4)',
+    backgroundColor: '#2F3033',
+    codeBlock: 'transparent',
     codeBlockText: '#ffffff',
   },
   codeBlock: {
@@ -354,6 +356,7 @@ export interface ResolvedThemeInterface {
   };
   rightPanel: {
     backgroundColor: string;
+    backgroundInner: string;
     textColor: string;
     width: string;
   };

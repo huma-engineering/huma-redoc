@@ -41,9 +41,10 @@ export const StyledDropdown = styled(Dropdown)`
     }
     .dropdown-selector {
       display: inline-flex;
+      align-items: center;
       padding: 0;
       height: auto;
-      padding-right: 20px;
+      padding-right: 10px;
       position: relative;
       margin-bottom: 5px;
     }
@@ -60,15 +61,26 @@ export const StyledDropdown = styled(Dropdown)`
     }
     .dropdown-arrow {
       position: absolute;
-      right: 3px;
-      top: 50%;
-      transform: translateY(-50%);
-      border-color: ${props => props.theme.colors.primary.main} transparent transparent;
-      border-style: solid;
-      border-width: 0.35em 0.35em 0;
-      width: 0;
+      right: 0;
+      top: calc(50% - 4.5px);
+      transform-origin: center center;
+      width: 12px;
+      height: 7px;
+      box-sizing: border-box;
+      background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='11px' height='6.2px' viewBox='0 0 11 6.2' style='enable-background:new 0 0 11 6.2;' xml:space='preserve'%3E%3Cpath style='fill:%23FFFFFF;' d='M5.5,6.2L5.5,6.2c-0.1,0-0.3-0.1-0.4-0.2l-5-5.3c-0.2-0.2-0.2-0.5,0-0.7c0.2-0.2,0.5-0.2,0.7,0L5.5,5 l4.6-4.9c0.2-0.2,0.5-0.2,0.7,0c0.2,0.2,0.2,0.5,0,0.7l-5,5.3C5.8,6.2,5.6,6.2,5.5,6.2z'/%3E%3C/svg%3E");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      transition: transform 300ms ease;
+
       svg {
         display: none;
+      }
+    }
+
+    &[open] {
+      .dropdown-arrow {
+        transform: rotate(-180deg);
       }
     }
 

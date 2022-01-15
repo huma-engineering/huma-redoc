@@ -15,7 +15,6 @@ export const headerCommonMixin = level => css`
 
 export const H1 = styled.h1`
   ${headerCommonMixin(1)};
-  color: ${({ theme }) => theme.colors.primary.main};
 
   ${extensionsHook('H1')};
 `;
@@ -37,8 +36,9 @@ export const H3 = styled.h2`
 
 export const RightPanelHeader = styled.h3`
   color: ${({ theme }) => theme.rightPanel.textColor};
-
   ${extensionsHook('RightPanelHeader')};
+  font-weight: 400;
+  font-size: 1.25rem;
 `;
 
 export const UnderlinedHeader = styled.h5`

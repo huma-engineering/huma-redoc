@@ -11,17 +11,22 @@ export const SampleControls = styled.div`
   > button {
     background-color: transparent;
     border: 0;
-    color: inherit;
+    color: ${({ theme }) => theme.rightPanel.textColor};
     padding: 2px 10px;
+    margin-left: 1rem;
     font-family: ${({ theme }) => theme.typography.fontFamily};
-    font-size: ${({ theme }) => theme.typography.fontSize};
+    font-size: 0.875rem;
+    text-decoration: underline;
     line-height: ${({ theme }) => theme.typography.lineHeight};
     cursor: pointer;
     outline: 0;
+    transition: opacity 300ms ease;
 
     :hover,
     :focus {
-      background: rgba(255, 255, 255, 0.1);
+      background: transparent;
+      text-decoration: none;
+      opacity: 0.8;
     }
   }
 `;
