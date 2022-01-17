@@ -1,6 +1,6 @@
 {
   "name": "@huma-engineering/huma-redoc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Huma Redoc",
   "repository": {
     "type": "git",
@@ -84,9 +84,9 @@
     "@types/json-pointer": "^1.0.30",
     "@types/lodash": "^4.14.170",
     "@types/lunr": "^2.3.3",
-    "@types/node": "^15.6.1",
     "@types/mark.js": "^8.11.5",
     "@types/marked": "^1.1.0",
+    "@types/node": "^15.6.1",
     "@types/prismjs": "^1.16.5",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.8",

@@ -17,7 +17,7 @@ export const RightPanelButton = styled.button`
       font-size: 1rem;
       font-weight: 400;
       width: 100%;
-      color: ${props => props.theme.colors.text.primary};
+      color: ${props => props.theme.colors.text.fixed};
       background: ${({ theme }) => theme.rightPanel.textColor};
       transition: color 300ms ease;
 
@@ -79,7 +79,7 @@ export const Button = styled.button`
       &.secondary {
         background: ${({ theme }) => theme.colors.secondary.main};
         border-color: ${({ theme }) => theme.colors.secondary.main};
-        color: ${({ theme }) => theme.colors.light.main};
+        color: ${({ theme }) => theme.colors.secondary.contrastText};
       }
 
       &.outline {
@@ -93,7 +93,7 @@ export const Button = styled.button`
         &:hover {
           &.secondary {
             background-color: ${({ theme }) => theme.colors.secondary.main};
-            color: ${({ theme }) => theme.colors.light.main};
+            color: ${({ theme }) => theme.colors.secondary.contrastText};
           }
         }
       }

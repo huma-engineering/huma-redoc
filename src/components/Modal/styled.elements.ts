@@ -26,7 +26,7 @@ export const ModalInner = styled.div`
   border-radius: 14px;
   width: 600px;
   max-width: calc(100vw - 30px);
-  background-color: ${({ theme }) => theme.colors.light.main};
+  background-color: ${({ theme }) => theme.modal.backgroundColor};
   box-shadow: 0px 0px 28px 1px rgba(107, 107, 107, 0.180698);
 `;
 
@@ -60,10 +60,12 @@ export const ModalClose = styled.div`
   display: flex;
   align-items: center;
   transition: opacity 300ms ease;
+  color: ${({ theme }) => theme.colors.text.primary};
 
   svg {
     width: 0.75rem;
     height: 0.75rem;
+    fill: ${({ theme }) => theme.colors.text.primary};
   }
 
   &:hover {

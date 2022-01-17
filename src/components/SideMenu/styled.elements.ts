@@ -115,7 +115,8 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
   ${ShelfIcon} {
     height: ${({ theme }) => theme.sidebar.arrow.size};
     width: ${({ theme }) => theme.sidebar.arrow.size};
-    polygon {
+
+    polygon, path {
       fill: ${({ theme }) => theme.sidebar.arrow.color};
     }
   }

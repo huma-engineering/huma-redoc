@@ -13,6 +13,7 @@ export const InputElement = styled.input`
   width: 100%;
   font-size: 1rem;
   line-height: 40px;
+  background-color: transparent;
 
   &[disabled]{
     background-color: inherit;
@@ -34,9 +35,16 @@ export const InputClear = styled.div`
   top: 50%;
   transform: translateY(-50%);
   right: 0;
+  color: ${({theme}) => theme.colors.text.primary};
   opacity: 0.6;
   cursor: pointer;
   transition: opacity 300ms ease;
+
+  svg {
+    path {
+      fill: ${({theme}) => theme.colors.text.primary};
+    }
+  }
 
   &.disabled {
     display: none;

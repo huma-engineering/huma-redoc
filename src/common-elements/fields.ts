@@ -25,7 +25,7 @@ export const ClickablePropertyNameCell = styled(PropertyNameCell)`
     width: ${({ theme }) => theme.schema.arrow.size};
     margin-left: 0.5rem;
     
-    polygon {
+    polygon, path {
       fill: ${({ theme }) => theme.schema.arrow.color};
     }
   }

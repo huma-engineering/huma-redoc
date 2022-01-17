@@ -48,7 +48,7 @@ const CallbackTitleWrapper = styled.button`
   }
 
   ${ShelfIcon} {
-    polygon {
+    polygon, path {
       fill: ${({ theme }) => darken(theme.colors.tonalOffset, theme.colors.gray[100])};
     }
   }

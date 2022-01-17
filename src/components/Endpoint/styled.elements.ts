@@ -40,7 +40,7 @@ export const HttpVerb = styled.span.attrs((props: { type: string; compact?: bool
 }))<{ type: string; compact?: boolean }>`
   font-size: 0.75rem;
   background-color: ${props => props.theme.colors.http[props.type] || '#999999'};
-  color: ${({theme}) => theme.colors.text.primary};
+  color: ${({theme}) => theme.colors.text.fixed};
   height: 24px;
   display: flex;
   border-radius: 20px;

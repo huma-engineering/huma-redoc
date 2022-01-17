@@ -13,7 +13,7 @@ export const OperationBadge = styled.span.attrs((props: { type: string }) => ({
   background-position: 6px 4px;
   font-size: 0.75rem;
   font-family: ${props => props.theme.typography.fontFamily};
-  color: ${props => props.theme.colors.text.primary};
+  color: ${props => props.theme.colors.badge.primary};
   margin-right: 10px;
   text-transform: capitalize;
 

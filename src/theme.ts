@@ -50,12 +50,14 @@ const defaultTheme: ThemeInterface = {
     },
     text: {
       primary: '#424347',
+      fixed: '#424347',
       secondary: '#909499',
       grey: "#6A6D72",
       error: "#ff491c"
     },
     border: {
       dark: 'rgba(0,0,0, 0.1)',
+      fixed: 'rgba(0,0,0, 0.1)',
       light: '#ffffff',
     },
     light: {
@@ -94,6 +96,9 @@ const defaultTheme: ThemeInterface = {
       link: '#07818F',
       head: '#A23DAD',
     },
+    badge: {
+      primary: '#424347',
+    }
   },
   schema: {
     linesColor: "#66CCCC",
@@ -177,6 +182,10 @@ const defaultTheme: ThemeInterface = {
   },
   codeBlock: {
     backgroundColor: ({ rightPanel }) => darken(0.1, rightPanel.backgroundColor),
+  },
+  modal: {
+    backgroundColor: '#ffffff',
+    titleColor: "#6A6D72",
   },
 };
 
@@ -262,10 +271,12 @@ export interface ResolvedThemeInterface {
     };
     border: {
       light: string;
+      fixed: string;
       dark: string;
     };
     text: {
       primary: string;
+      fixed: string;
       secondary: string;
       grey: string;
       error: string;
@@ -289,6 +300,9 @@ export interface ResolvedThemeInterface {
     };
     light: {
       main: string;
+    }
+    badge: {
+      primary: string;
     }
   };
   schema: {
@@ -367,7 +381,12 @@ export interface ResolvedThemeInterface {
   }
   codeBlock: {
     backgroundColor: string;
-  };
+  }
+  modal: {
+    backgroundColor: string;
+    titleColor:string;
+  }
+  ;
 
   extensionsHook?: (name: string, props: any) => string;
 }

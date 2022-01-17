@@ -28,4 +28,5 @@ export const AuthorizationRow = styled.div`
 
 export const AuthorizationLabel = styled.div`
   font-size: 1rem;
+  color: ${({theme})=>theme.colors.text.primary};
 `;

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Code } from './styled.elements';
 import { ShelfIcon } from '../../common-elements';
 import { Markdown } from '../Markdown/Markdown';
+import {ResponseTitleArrow} from "./styled.elements"
 
 export interface ResponseTitleProps {
   code: string;
@@ -26,11 +27,13 @@ export class ResponseTitle extends React.PureComponent<ResponseTitleProps> {
         disabled={empty}
       >
         {!empty && (
-          <ShelfIcon
-            size={'1em'}
-            direction={opened ? 'down' : 'right'}
-            float={'left'}
-          />
+          <ResponseTitleArrow>
+            <ShelfIcon
+              size={'1em'}
+              direction={opened ? 'down' : 'right'}
+              float={'left'}
+            />
+          </ResponseTitleArrow>
         )}
         <Code>{code} </Code>
         <Markdown compact={true} inline={true} source={title} />

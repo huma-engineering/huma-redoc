@@ -23,7 +23,7 @@ export const SelectInput = styled.input`
   font-size: 1rem;
 
   &::placeholder{
-    color: ${({ theme }) => `rgba(${theme.colors.text.primary}, 0.5)`}
+    color: ${({ theme }) => theme.modal.titleColor}
   }
 `;
 

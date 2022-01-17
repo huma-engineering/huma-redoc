@@ -18,12 +18,12 @@ export const StyledResponseTitle = styled(ResponseTitle)`
   background-color: transparent;
   cursor: pointer;
   outline: none;
-  color: ${({theme}) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.text.secondary};
   box-shadow: ${props => props.opened ? `box-shadow: 0px 1px 0px 0px #000000` : "none"};
   transition: color 300ms ease;
 
   &:hover {
-    color: ${({theme}) => theme.colors.text.primary};
+    color: ${({ theme }) => theme.colors.text.primary};
   }
 
   strong {
@@ -31,7 +31,7 @@ export const StyledResponseTitle = styled(ResponseTitle)`
     border-radius: 20px;
     font-size: 0.875rem;
     color: ${props => props.theme.colors.responses[props.type].color};
-    padding: ${({ theme }) => theme.spacing.unit*1.5}px ${({ theme }) => theme.spacing.unit*3}px;
+    padding: ${({ theme }) => theme.spacing.unit * 1.5}px ${({ theme }) => theme.spacing.unit * 3}px;
     background-color: ${props => props.theme.colors.responses[props.type].backgroundColor};
   }
 
@@ -71,3 +71,13 @@ export const HeadersCaption = styled(UnderlinedHeader.withComponent('caption'))`
 export const Code = styled.strong`
   vertical-align: top;
 `;
+
+export const ResponseTitleArrow = styled.div`
+svg {
+  polygon, path {
+    fill: ${({ theme }) =>  theme.colors.text.primary };
+  }
+}`;
+
+
+
