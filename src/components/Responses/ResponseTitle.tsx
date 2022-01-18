@@ -18,7 +18,7 @@ export interface ResponseTitleProps {
 export class ResponseTitle extends React.PureComponent<ResponseTitleProps> {
   render() {
     const { title, empty, code, opened, className, onClick } = this.props;
-    console.log(empty)
+
     return (
       <button
         className={className}
